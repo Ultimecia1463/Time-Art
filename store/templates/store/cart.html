@@ -1,0 +1,84 @@
+{% extends 'store/base.html' %}
+
+{% block content %}
+
+<!-- PAGE TITLE -->
+<div class="mb-8">
+  <h1 class="text-3xl font-bold tracking-tight">
+    Your Cart
+  </h1>
+  <p class="text-base-content/60 mt-1">
+    Review your selected watches before checkout.
+  </p>
+</div>
+
+{% if items %}
+
+<!-- CART ITEMS -->
+<div class="space-y-6">
+
+  {% for item in items %}
+  <div class="card bg-base-100 shadow-lg">
+    <div class="card-body flex flex-row justify-between items-center">
+
+      <!-- PRODUCT INFO -->
+      <div>
+        <h3 class="text-lg font-semibold">
+          {{ item.product.name }}
+        </h3>
+        <p class="text-sm opacity-60">
+          Quantity: {{ item.quantity }}
+        </p>
+      </div>
+
+      <!-- PRICE -->
+      <div class="text-right">
+        <p class="text-xl font-bold">
+          ₹{{ item.subtotal }}
+        </p>
+      </div>
+
+    </div>
+  </div>
+  {% endfor %}
+
+</div>
+
+<!-- CART SUMMARY -->
+<div class="mt-10 card bg-base-100 shadow-xl">
+  <div class="card-body flex justify-between items-center">
+
+    <div>
+      <p class="text-sm opacity-60">Total Amount</p>
+      <p class="text-2xl font-bold">
+        ₹{{ total }}
+      </p>
+    </div>
+
+    <a href="{% url 'checkout' %}" class="btn btn-primary btn-lg">
+      Proceed to Checkout
+    </a>
+
+  </div>
+</div>
+
+{% else %}
+
+<!-- EMPTY CART -->
+<div class="card bg-base-100 shadow-xl text-center py-16">
+  <div class="card-body">
+    <h2 class="text-2xl font-bold">
+      Your cart is empty
+    </h2>
+    <p class="opacity-60 mt-2">
+      Browse our collection and add a watch to get started.
+    </p>
+    <a href="/" class="btn btn-primary mt-6">
+      Shop Watches
+    </a>
+  </div>
+</div>
+
+{% endif %}
+
+{% endblock %}

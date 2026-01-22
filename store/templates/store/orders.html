@@ -1,0 +1,94 @@
+{% extends 'store/base.html' %}
+
+{% block content %}
+
+<!-- PAGE HEADER -->
+<div class="mb-8">
+  <h1 class="text-3xl font-bold tracking-tight">
+    My Orders
+  </h1>
+  <p class="text-base-content/60 mt-1">
+    Track and review your past purchases.
+  </p>
+</div>
+
+{% if orders %}
+
+<!-- ORDERS LIST -->
+<div class="space-y-6">
+
+  {% for order in orders %}
+  <div class="card bg-base-100 shadow-lg">
+    <div class="card-body">
+
+      <!-- ORDER HEADER -->
+      <div class="flex justify-between items-start">
+        <div>
+          <h3 class="text-lg font-semibold">
+            Order #{{ order.id }}
+          </h3>
+          <p class="text-sm opacity-60">
+            {{ order.created_at }}
+          </p>
+        </div>
+
+        <!-- STATUS BADGE -->
+        {% if order.status == "PLACED" %}
+          <span class="badge badge-info badge-outline">
+            {{ order.status }}
+          </span>
+        {% elif order.status == "CONFIRMED" %}
+          <span class="badge badge-primary badge-outline">
+            {{ order.status }}
+          </span>
+        {% elif order.status == "SHIPPED" %}
+          <span class="badge badge-warning badge-outline">
+            {{ order.status }}
+          </span>
+        {% elif order.status == "DELIVERED" %}
+          <span class="badge badge-success badge-outline">
+            {{ order.status }}
+          </span>
+        {% else %}
+          <span class="badge badge-outline">
+            {{ order.status }}
+          </span>
+        {% endif %}
+      </div>
+
+      <!-- ORDER DETAILS -->
+      <div class="mt-4 flex justify-between items-center">
+        <p class="text-base-content/70">
+          Total Amount
+        </p>
+        <p class="text-xl font-bold">
+          ₹{{ order.total_amount }}
+        </p>
+      </div>
+
+    </div>
+  </div>
+  {% endfor %}
+
+</div>
+
+{% else %}
+
+<!-- EMPTY STATE -->
+<div class="card bg-base-100 shadow-xl text-center py-16">
+  <div class="card-body">
+    <h2 class="text-2xl font-bold">
+      No orders yet
+    </h2>
+    <p class="opacity-60 mt-2">
+      You haven’t placed any orders yet.
+    </p>
+    <a href="/" class="btn btn-primary mt-6">
+      Start Shopping
+    </a>
+  </div>
+</div>
+
+{% endif %}
+
+{% endblock %}

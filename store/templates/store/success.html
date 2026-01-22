@@ -1,0 +1,42 @@
+{% extends 'store/base.html' %}
+
+{% block content %}
+
+<div class="flex justify-center items-center min-h-[60vh]">
+
+  <div class="card bg-base-100 shadow-2xl max-w-md text-center">
+    <div class="card-body">
+
+      <!-- ICON -->
+      <div class="text-5xl mb-4">
+        🎉
+      </div>
+
+      <!-- TITLE -->
+      <h1 class="text-3xl font-bold">
+        Order Placed Successfully
+      </h1>
+
+      <!-- SUBTEXT -->
+      <p class="mt-3 text-base-content/70">
+        Thank you for shopping with WatchStore.
+        Your order has been confirmed and is being processed.
+      </p>
+
+      <!-- ACTIONS -->
+      <div class="card-actions justify-center mt-6">
+        <a href="/" class="btn btn-primary">
+          Continue Shopping
+        </a>
+
+        <a href="/orders/" class="btn btn-outline">
+          View My Orders
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

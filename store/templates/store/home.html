@@ -1,0 +1,90 @@
+{% extends 'store/base.html' %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+<div class="hero bg-base-100 rounded-box mb-14">
+  <div class="hero-content flex-col lg:flex-row gap-10">
+
+    <div class="max-w-xl">
+      <h1 class="text-5xl font-bold tracking-tight leading-tight">
+        Luxury Watches
+      </h1>
+
+      <p class="py-6 text-base-content/70">
+        Handpicked premium watches crafted for precision,
+        elegance, and timeless legacy.
+      </p>
+
+      <a href="#products" class="btn btn-primary btn-lg">
+        Explore Collection
+      </a>
+    </div>
+
+    <!-- Optional hero visual (can remove if you want) -->
+    <div class="hidden lg:block">
+      <img
+        src="https://images.unsplash.com/photo-1523275335684-37898b6baf30"
+        class="max-w-sm rounded-box shadow-xl"
+        alt="Watch"
+      />
+    </div>
+
+  </div>
+</div>
+
+<!-- SECTION TITLE -->
+<div id="products" class="mb-8">
+  <h2 class="text-3xl font-bold tracking-tight">
+    Our Collection
+  </h2>
+  <p class="text-base-content/60 mt-1">
+    Discover watches designed for every moment.
+  </p>
+</div>
+
+<!-- PRODUCT GRID -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+  {% for product in products %}
+  <div class="card bg-base-100 shadow-xl hover:shadow-2xl transition duration-300">
+
+    <!-- PRODUCT IMAGE -->
+    <figure class="h-64 overflow-hidden">
+      <img
+        src="{{ product.image }}"
+        alt="{{ product.name }}"
+        class="w-full h-full object-cover"
+      />
+    </figure>
+
+    <!-- CARD BODY -->
+    <div class="card-body">
+      <p class="text-sm opacity-60">
+        {{ product.brand }}
+      </p>
+
+      <h2 class="card-title text-lg">
+        {{ product.name }}
+      </h2>
+
+      <div class="flex justify-between items-center mt-4">
+        <span class="text-xl font-bold">
+          ₹{{ product.price }}
+        </span>
+
+        <a
+          href="{% url 'product_detail' product.id %}"
+          class="btn btn-outline btn-sm"
+        >
+          View →
+        </a>
+      </div>
+    </div>
+
+  </div>
+  {% endfor %}
+
+</div>
+
+{% endblock %}
